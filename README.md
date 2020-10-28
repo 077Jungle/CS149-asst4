@@ -110,7 +110,7 @@ Please familiarize yourself with the function `bfs_top_down()` in `bfs/bfs.cpp`,
 
 You can run bfs using:
 
-    ./bfs <ATH_TO_GRAPHS_DIRECTORY>/rmat_200m.graph
+    ./bfs <PATH_TO_GRAPHS_DIRECTORY>/rmat_200m.graph
     
 (as with page rank, bfs's first argument is a graph file, and an optional second argument is the number of threads.)
 
