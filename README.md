@@ -1,6 +1,6 @@
 # Assignment 4: Big Graph Processing in OpenMP #
 
-**Due: Tuesday Nov 19th, 11:59PM PST**
+**Due: Thursday Nov 12th, 11:59PM PST**
 
 **100 points total**
 
@@ -18,12 +18,11 @@ Download the Assignment 4 starter code from the course Github page using:
 
     git clone https://github.com/stanford-cs149/asst4
 
-
 #### Background: Learning OpenMP ####
 
 In this assignment we'd like you to use [OpenMP](http://openmp.org/wp/) for multi-core parallelization. OpenMP is an API and set of C-language extensions that provides compiler support for parallelism. You can also use OpenMP to tell the compiler to parallelize iterations of `for` loops, and to manage mutual exclusion. It is well documented online, but here is a brief example of parallelizing a `for` loop, with mutual exclusion.
 
-    /* The iterations this for loop may be parallelized */      
+    /* The iterations of this for loop may be parallelized by the compiler */      
     #pragma omp parallel for                                                      
     for (int i = 0; i < 100; i++) {  
     
@@ -37,9 +36,9 @@ In this assignment we'd like you to use [OpenMP](http://openmp.org/wp/) for mult
       }                                                                             
     }
     
-Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling (e.g., `omp parallel for schedule(dynamic)`).
+Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling. (For example, `omp parallel for schedule(dynamic 100 )` distributes iterations to threads using dynamic scheduling with a chunk size of 100 iterations.  You can think of the implementation as a dynamic work queue where thrads in the thrad pool pull off 100 iterations at one, like what [we talked about in these lecture slides](http://cs149.stanford.edu/fall20/lecture/perfopt1/slide_12)).
     
-Here is an example for an atomic counter update.
+Here is an example for an atomic counter update in OpenMP.
 
     int my_counter = 0;
     #pragma omp parallel for                                                        
@@ -55,6 +54,7 @@ We expect you to be able to read OpenMP documentation on your own (Google will b
  * The OpenMP 3.0 specification: <http://www.openmp.org/mp-documents/spec30.pdf>.
  * An OpenMP cheat sheet <http://openmp.org/mp-documents/OpenMP3.1-CCard.pdf>.
  * OpenMP has support for reductions on shared variables, and for declaring thread-local copies of variables.
+ * This is a nice guide for the `omp parallel_for` directives: <http://www.inf.ufsc.br/~bosco.sobral/ensino/ine5645/OpenMP_Dynamic_Scheduling.pdf>
 
 #### Background: Representing Graphs ####
 
@@ -79,7 +79,7 @@ You can run your code, checking correctness and performance against the staff re
 
     ./pr <PATH_TO_GRAPHS_DIRECTORY>/com-orkut_117m.graph 
     
-If you are working on a myth machine, we've located a copy of the graphs directory at `/afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`.  You can also download the graphs from `http://cs149.stanford.edu/winter19content/asstdata/all_graphs.tgz`. (But be careful, this is a 2.2GB download.) Some interesting real-world graphs include:
+If you are working on a myth machine, we've located a copy of the graphs directory at `/afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`.  You can also download the graphs from `http://cs149.stanford.edu/cs149asstdata/all_graphs.tgz`. (But be careful, this is a 2.2GB download.) Some interesting real-world graphs include:
 
  * com-orkut_117m.graph 
  * oc-pokec_30m.graph
@@ -101,6 +101,8 @@ Your code should handle cases where there are no outgoing edges by distributing 
 
 You can also run our grading script via: `./pr_grader <path to graphs directory>`, which will report correctness and a performance points score for a number of graphs.
 
+__NOTE: a common pitfall students hit when implementing `page_rank` is they find their implementation fails the correctness check based on very small differences between their code's output values and the reference. Since the errors are very small, it's reasonable to assume these are due to differences in the order of floating point arithmetic, and that the checker should be more lenient in its checks.  However, our experience is that this is *almost, almost always an error in the student's code*. 
+
 ## Part 2: Parallel Breadth-First Search ("Top Down") ##
 
 Breadth-first search (BFS) is a common algorithm that you've almost certainly seen in a prior algorithms class.
@@ -119,7 +121,7 @@ In this part of the assignment your job is to parallelize top-down BFS. As with 
 __Tips/Hints:__
 
 * Always start by considering what work can be done in parallel.
-* Some part of the computation may need to be synchronized, for example, by wrapping the appropriate code within a critical region using `#pragma omp critical`.  However, in this problem you can get by with a single atomic operation called `compare and swap`.  You can read about [GCC's implementation of compare and swap](http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html), which is exposed to C code as the function `__sync_bool_compare_and_swap`.  If you can figure out how to use compare-and-swap for this problem, you will achieve much higher performance than using a critical region. (We will talk about compare and swap in detail in the second half of the course, but in this problem it's up to you to figure out how to use it.)
+* Some part of the computation may need to be synchronized, for example, by wrapping the appropriate code within a critical region using `#pragma omp critical` or `#pragma omp atomic`.  __However, in this problem you can get by with a single atomic operation called `compare and swap`.__  You can read about [GCC's implementation of compare and swap](http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html), which is exposed to C code as the function `__sync_bool_compare_and_swap`.  If you can figure out how to use compare-and-swap for this problem, you will achieve much higher performance than using a critical region. (We will talk about compare and swap in detail in the second half of the course, but in this problem it's up to you to figure out how to use it.)
 * Are there conditions where it is possible to avoid using `compare_and_swap`?  In other words, when you *know* in advance that the comparison will fail?
 * There is a preprocessor macro `VERBOSE` to make it easy to disable useful print per-step timings in your solution (see the top of `bfs/bfs.cpp`).  In general, these printfs occur infrequently enough (only once per BFS step) that they do not notably impact performance, but if you want to disable the printfs during timing, you can use this `#define` as a convenience.
 
@@ -166,9 +168,9 @@ Aspects of your work that you should mention in the write-up include:
 
 The 100 points on this assignment are allotted as follows:
 
-* 16 points:  pagerank performance
+* 16 points:  Pagerank performance
 * 70 points:  BFS performance
-* 14 points:  writeup
+* 14 points:  Write-up
 
 ## Hand-in Instructions ##
 
