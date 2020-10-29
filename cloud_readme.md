@@ -1,31 +1,33 @@
-# Google Cloud Platform Setup Instructions #
+# AWS Setup Instructions #
 
-For performance testing, you will need to run it on a VM instance on the Google Cloud Platform (GCP). We've already sent you student coupons that you can use for billing purposes. Here are the steps for how to get setup for running on GCP.
+For performance testing, you will need to run it on a VM instance on Amazon Web Services (AWS). We've already sent you student coupons that you can use for billing purposes. Here are the steps for how to get setup for running on AWS.
 
-NOTE: For those working in teams, it might be desirable for both students to use the same virtual machine. To do so, only one of you should first create the VM instance following the instructions below. Then, follow the instructions at https://cloud.google.com/compute/docs/access/granting-access-to-resources to grant access to your partner.
+NOTE: __Please don't forget to SHUT DOWN your instances when you're done for the day to avoid burning through credits overnight!__
 
-NOTE #2: __Please don't forget to SHUT DOWN your instances when you're done with your work for the day!  The 32 vCPU-enabled cloud VM instances you create for this assignment cost approximately $1 per hour.  Leaving it on accidentally for a day could quickly eat up your $50 per student quota for the assignment.__
-
-NOTE #3: __Update your CPU quota (across all regions) under IAM & admin to at least 32 ASAP.
-   
-### Creating a 32 vCPU VM on GCP ###
+### Creating a VM with 32 vCPU ###
       
-1. Now you're ready to create a VM instance. Click on the button that says `Create Instance`. Fill out the form such that your cloud-based  VM has the following properties: 
-  * Region __us-west1__ (Oregon)
-  * Type n1-standard-32 (__32 vCPUs__, __120 GB__ memory) 
-  * Ubuntu __18.04 LTS__  
-  * At least a __20GB__ Standard persistent disk.
-  
-Notice the __>$700 monthly cost if you don't shutdown your instance.__
+1. Now you're ready to create a VM instance. Click on the button that says `Launch Instances`. Choose the `Ubuntu Server 20.04 LTS (HVM), SSD Volume Type` AMI:
+![AMI Selection](handout/AMI.png?raw=true)
 
-2. Click `Create` to create a VM instance with the above parameters. Now that you've created your VM, you should be able to __SSH__ into it. Either open it from the VM instance page (the one that shows a list of all your VM instances) or use the `gcloud compute ssh` command from your local console or the Google Cloud shell). For example:
+2. Choose the `m5.8xlarge` Instance Type and then click `4. Add Storage` on the top bar: 
+![instance](handout/instance_type.png?raw=true)
+
+3. Change the size of the `Root` volume to 100 GB to accomodate the packages we will need to install to make the instance functional for the assignment:
+![Storage](handout/storage.png?raw=true)
+
+5. AWS will ask you to select a key pair. You can use the same key pair from assignment 3. Alternatively, you can create a new one. To create a new one, click the first dropdown and choose `Create a new key pair` and give it whatever name you'd like. This will download a keyfile to your computer called `<key_name>.pem` which you will use to login to the VM instance you are about to create. Finally, click `Launch Instances`.
+![Key Pair](handout/new_key_pair.png?raw=true)
+
+__Note: `m5.8xlarge` instances cost $1.536 / hour, so leaving one running for a whole day will consume $36.86 worth of your AWS coupon.__
+
+4. Now that you've created your VM, you should be able to __SSH__ into it. You need the public IP address to SSH into it, which you can find on the instance page by clicking the `View Instances` button on the current page and then the instance ID for your created instance (note, it may take a moment for the instance to startup and be assigned an IP address):
+![IP Address](handout/ip_address.png?raw=true)
+Once you have the IP address, you can login to the instance by running this command:
 ~~~~
-gcloud compute ssh MY_INSTANCE_NAME
+ssh -i path/to/key_name.pem ubuntu@<public_ip_address>
 ~~~~
 
-You can find `MY_INSTANCE_NAME` in the *VM instances* page.
-
-3. Once you SSH into your VM instance, you'll want to install whatever software you need to make the machine a useful development environment for you.  For example we recommend:
+5. Once you SSH into your VM instance, you'll want to install whatever software you need to make the machine a useful development environment for you.  For example we recommend:
 ~~~~
 sudo apt update
 sudo apt install emacs25
