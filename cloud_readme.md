@@ -10,10 +10,10 @@ NOTE: __Please don't forget to SHUT DOWN your instances when you're done for the
 ![AMI Selection](handout/AMI.png?raw=true)
 
 2. Choose the `m5.8xlarge` Instance Type and then click `4. Add Storage` on the top bar: 
-![instance](handout/instance_type.png?raw=true)
+![instance](handout/instance_type_big.png?raw=true)
 
 3. Change the size of the `Root` volume to 100 GB to accomodate the packages we will need to install to make the instance functional for the assignment:
-![Storage](handout/storage.png?raw=true)
+![Storage](handout/storage_big.png?raw=true)
 
 5. AWS will ask you to select a key pair. You can use the same key pair from assignment 3. Alternatively, you can create a new one. To create a new one, click the first dropdown and choose `Create a new key pair` and give it whatever name you'd like. This will download a keyfile to your computer called `<key_name>.pem` which you will use to login to the VM instance you are about to create. Finally, click `Launch Instances`.
 ![Key Pair](handout/new_key_pair.png?raw=true)
