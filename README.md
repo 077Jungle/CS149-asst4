@@ -20,7 +20,7 @@ Download the Assignment 4 starter code from the course Github page using:
 
 #### Background: Learning OpenMP ####
 
-In this assignment we'd like you to use [OpenMP](http://openmp.org/wp/) for multi-core parallelization. OpenMP is an API and set of C-language extensions that provides compiler support for parallelism. You can also use OpenMP to tell the compiler to parallelize iterations of `for` loops, and to manage mutual exclusion. It is well documented online, but here is a brief example of parallelizing a `for` loop, with mutual exclusion.
+In this assignment we'd like you to use [OpenMP](http://openmp.org/) for multi-core parallelization. OpenMP is an API and set of C-language extensions that provides compiler support for parallelism. You can also use OpenMP to tell the compiler to parallelize iterations of `for` loops, and to manage mutual exclusion. It is well documented online, but here is a brief example of parallelizing a `for` loop, with mutual exclusion.
 
     /* The iterations of this for loop may be parallelized by the compiler */      
     #pragma omp parallel for                                                      
@@ -36,7 +36,7 @@ In this assignment we'd like you to use [OpenMP](http://openmp.org/wp/) for mult
       }                                                                             
     }
     
-Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling. (For example, `omp parallel for schedule(dynamic 100 )` distributes iterations to threads using dynamic scheduling with a chunk size of 100 iterations.  You can think of the implementation as a dynamic work queue where thrads in the thrad pool pull off 100 iterations at one, like what [we talked about in these lecture slides](http://cs149.stanford.edu/fall20/lecture/perfopt1/slide_12)).
+Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling. (For example, `omp parallel for schedule(dynamic 100)` distributes iterations to threads using dynamic scheduling with a chunk size of 100 iterations.  You can think of the implementation as a dynamic work queue where threads in the thread pool pull off 100 iterations at one, like what [we talked about in these lecture slides](http://35.227.169.186/cs149/fall21/lecture/perfopt1/slide_11)).
     
 Here is an example for an atomic counter update in OpenMP.
 
@@ -101,7 +101,7 @@ Your code should handle cases where there are no outgoing edges by distributing 
 
 You can also run our grading script via: `./pr_grader <path to graphs directory>`, which will report correctness and a performance points score for a number of graphs.
 
-__NOTE: a common pitfall students hit when implementing `page_rank` is they find their implementation fails the correctness check based on very small differences between their code's output values and the reference. Since the errors are very small, it's reasonable to assume these are due to differences in the order of floating point arithmetic, and that the checker should be more lenient in its checks.  However, our experience is that this is *almost, almost always an error in the student's code*. 
+__NOTE__: a common pitfall students hit when implementing `page_rank` is they find their implementation fails the correctness check based on very small differences between their code's output values and the reference. Since the errors are very small, it's reasonable to assume these are due to differences in the order of floating point arithmetic, and that the checker should be more lenient in its checks.  However, our experience is that this is *almost, almost always an error in the student's code*. 
 
 ## Part 2: Parallel Breadth-First Search ("Top Down") ##
 
@@ -136,7 +136,7 @@ Think about what behavior might cause a performance problem in the BFS implement
 
 This algorithm is sometimes referred to as a "bottom up" implementation of BFS, since each vertex looks "up the BFS tree" to find its ancestor. (As opposed to being found by its ancestor in a "top down" fashion, as was done in Part 1.2.)
 
-Please implement a bottom-up BFS to compute the shortest path to all the vertices in the graph from the root. (see `bfs_bottom_up()` in `bfs/bfs.cpp`)  Start by implementing a simple sequential version.  Then parallelize your implementation.
+Please implement a bottom-up BFS to compute the shortest path to all the vertices in the graph from the root (see `bfs_bottom_up()` in `bfs/bfs.cpp`). Start by implementing a simple sequential version. Then parallelize your implementation.
 
 __Tips/Hints:__
 
