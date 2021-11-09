@@ -36,7 +36,7 @@ In this assignment we'd like you to use [OpenMP](http://openmp.org/) for multi-c
       }                                                                             
     }
     
-Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling. (For example, `omp parallel for schedule(dynamic 100)` distributes iterations to threads using dynamic scheduling with a chunk size of 100 iterations.  You can think of the implementation as a dynamic work queue where threads in the thread pool pull off 100 iterations at one, like what [we talked about in these lecture slides](http://35.227.169.186/cs149/fall21/lecture/perfopt1/slide_11)).
+Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling. (For example, `omp parallel for schedule(dynamic 100)` distributes iterations to threads using dynamic scheduling with a chunk size of 100 iterations.  You can think of the implementation as a dynamic work queue where threads in the thread pool pull off 100 iterations at once, like what [we talked about in these lecture slides](http://35.227.169.186/cs149/fall21/lecture/perfopt1/slide_11)).
     
 Here is an example for an atomic counter update in OpenMP.
 
@@ -103,9 +103,20 @@ You can also run our grading script via: `./pr_grader <path to graphs directory>
 
 __NOTE__: a common pitfall students hit when implementing `page_rank` is they find their implementation fails the correctness check based on very small differences between their code's output values and the reference. Since the errors are very small, it's reasonable to assume these are due to differences in the order of floating point arithmetic, and that the checker should be more lenient in its checks.  However, our experience is that this is *almost, almost always an error in the student's code*. 
 
+__Tips:__ 
+
+Accumulating into a shared variable can be done by marking the variable as a "reduction" variable in an OpenMP loop.
+
+     float A[100];
+     float mySum = 0.0;
+     #pragma omp parallel for reduction(+:mySum)
+     for (int i=0; i<100; i++) {
+         mySum += A[i];
+     }
+
 ## Part 2: Parallel Breadth-First Search ("Top Down") ##
 
-Breadth-first search (BFS) is a common algorithm that you've almost certainly seen in a prior algorithms class.
+Breadth-first search (BFS) is a common algorithm that might have seen in a prior algorithms class (See [here](https://www.hackerearth.com/practice/algorithms/graphs/breadth-first-search/tutorial/) and [here](https://www.youtube.com/watch?v=oDqjPvD54Ss) for helpful references.)
 Please familiarize yourself with the function `bfs_top_down()` in `bfs/bfs.cpp`, which contains a sequential implementation of BFS. The code uses BFS to compute the distance to vertex 0 for all vertices in the graph. You may wish to familiarize yourself with the graph structure defined in `common/graph.h` as well as the simple array data structure `vertex_set` (`bfs/bfs.h`), which is an array of vertices used to represent the current frontier of BFS.
 
 You can run bfs using:
@@ -121,7 +132,8 @@ In this part of the assignment your job is to parallelize top-down BFS. As with 
 __Tips/Hints:__
 
 * Always start by considering what work can be done in parallel.
-* Some part of the computation may need to be synchronized, for example, by wrapping the appropriate code within a critical region using `#pragma omp critical` or `#pragma omp atomic`.  __However, in this problem you can get by with a single atomic operation called `compare and swap`.__  You can read about [GCC's implementation of compare and swap](http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html), which is exposed to C code as the function `__sync_bool_compare_and_swap`.  If you can figure out how to use compare-and-swap for this problem, you will achieve much higher performance than using a critical region. (We will talk about compare and swap in detail in the second half of the course, but in this problem it's up to you to figure out how to use it.)
+* Some parts of the computation may need to be synchronized, for example, by wrapping the appropriate code within a critical region using `#pragma omp critical` or `#pragma omp atomic`.  __However, in this problem you should think about how to make use of the simple atomic operation called `compare and swap`.__  You can read about [GCC's implementation of compare and swap](http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html), which is exposed to C code as the function `__sync_bool_compare_and_swap`.  If you can figure out how to use compare-and-swap for this problem, you will achieve much higher performance than using a critical region. 
+* Updating a shared counter can be done efficiently using `#pragma omp atomic` before a line like `counter++;`. 
 * Are there conditions where it is possible to avoid using `compare_and_swap`?  In other words, when you *know* in advance that the comparison will fail?
 * There is a preprocessor macro `VERBOSE` to make it easy to disable useful print per-step timings in your solution (see the top of `bfs/bfs.cpp`).  In general, these printfs occur infrequently enough (only once per BFS step) that they do not notably impact performance, but if you want to disable the printfs during timing, you can use this `#define` as a convenience.
 
