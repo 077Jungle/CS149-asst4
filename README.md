@@ -1,6 +1,6 @@
 # Assignment 4: Big Graph Processing in OpenMP #
 
-**Due: Tuesday Nov 29th, 11:59PM PST**
+**Due: Thursday Dec 1st, 11:59PM PST**
 
 **100 points total**
 
