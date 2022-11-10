@@ -6,11 +6,19 @@ NOTE: __Please don't forget to SHUT DOWN your instances when you're done for the
 
 ### Creating a VM with 32 vCPU ###
       
-1. Navigate to your "Instances" page in AWS by selecting the correct link in the left hand menu. Click on the button that says `Launch Instances`. Choose the `Ubuntu Server 20.04 LTS (HVM), SSD Volume Type` AMI:
+1. Navigate to your "Instances" page in AWS by selecting the correct link in the left hand menu.
+TODO: put image here
+
+2. Click on the button that says `Launch Instances`. Choose the `Ubuntu Server 20.04 LTS (HVM), SSD Volume Type` AMI:
+TODO: change image
 ![AMI Selection](handout/AMI.png?raw=true)
 
-2. Choose the `m5.8xlarge` Instance Type and then click `4. Add Storage` on the top bar: 
+2. Choose the `m5.8xlarge` Instance Type
+TODO: change image
 ![instance](handout/instance_type_big.png?raw=true)
+
+3. Scroll down to `Configure storage` and change the size: 
+
 
 3. Change the size of the `Root` volume to 100 GB to accomodate the packages we will need to install to make the instance functional for the assignment:
 ![Storage](handout/storage_big.png?raw=true)
