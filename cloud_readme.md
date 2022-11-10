@@ -17,18 +17,19 @@ TODO: change image
 TODO: change image
 ![instance](handout/instance_type_big.png?raw=true)
 
-3. Scroll down to `Configure storage` and change the size: 
+3. Next, under `Key pair (login)`, choose a key pair. You can use the same key pair from assignment 3. Alternatively, you can create a new one. To create a new one, click `Create new key pair` and give it whatever name you'd like. This will download a keyfile to your computer called `<key_name>.pem` which you will use to login to the VM instance you are about to create.
+TODO: add image
+![Key Pair](handout/new_key_pair.png?raw=true)
 
-
-3. Change the size of the `Root` volume to 100 GB to accomodate the packages we will need to install to make the instance functional for the assignment:
+4. Scroll down to `Configure storage` and change the size of the `Root volume` to 100 GiB to accomodate the packages we will need to install to make the instance functional for the assignment.
+TODO: add image
 ![Storage](handout/storage_big.png?raw=true)
 
-5. AWS will ask you to select a key pair. You can use the same key pair from assignment 3. Alternatively, you can create a new one. To create a new one, click the first dropdown and choose `Create a new key pair` and give it whatever name you'd like. This will download a keyfile to your computer called `<key_name>.pem` which you will use to login to the VM instance you are about to create. Finally, click `Launch Instances`.
-![Key Pair](handout/new_key_pair.png?raw=true)
+5. Once you've done all previous steps, scroll to the bottom and click `Launch instance`
 
 __Note: `m5.8xlarge` instances cost $1.792 / hour, so leaving one running for a whole day will consume $43 worth of your AWS coupon.__
 
-4. Now that you've created your VM, you should be able to __SSH__ into it. You need the public IP address to SSH into it, which you can find on the instance page by clicking the `View Instances` button on the current page and then the instance ID for your created instance (note, it may take a moment for the instance to startup and be assigned an IP address):
+6. Now that you've created your VM, you should be able to __SSH__ into it. You need the public IP address to SSH into it, which you can find on the instance page by clicking the `View All Instances` button on the current page and then the instance ID for your created instance (note, it may take a moment for the instance to startup and be assigned an IP address):
 ![IP Address](handout/ip_address.png?raw=true)
 Once you have the IP address, you can login to the instance by running this command:
 ~~~~
@@ -43,6 +44,6 @@ sudo apt install make
 sudo apt install g++
 ~~~~
 
-If you're confused about any of the steps, having problems with setting up your account or have any additional questions, reach us out on Piazza!
+If you're confused about any of the steps, having problems with setting up your account or have any additional questions, reach us out on Ed!
   
 __Again, please don't forget to SHUT DOWN your instances when you're done with your work for the day!__
