@@ -14,9 +14,11 @@ Early starters of this assignment should get started by running on the 4-core (8
 
 To get started on myth machines:
 
+**Note: to do this step, you may need to add an SSH key pair to your GitHub account and the myth machines:** [Add SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
 Download the Assignment 4 starter code from the course Github page using:
 
-    git clone https://github.com/stanford-cs149/asst4
+    git clone git@github.com:stanford-cs149/asst4.git
 
 #### Background: Learning OpenMP ####
 
@@ -36,7 +38,7 @@ In this assignment we'd like you to use [OpenMP](http://openmp.org/) for multi-c
       }                                                                             
     }
     
-Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling. (For example, `omp parallel for schedule(dynamic 100)` distributes iterations to threads using dynamic scheduling with a chunk size of 100 iterations.  You can think of the implementation as a dynamic work queue where threads in the thread pool pull off 100 iterations at once, like what [we talked about in these lecture slides](http://35.227.169.186/cs149/fall21/lecture/perfopt1/slide_11)).
+Please see OpenMP documentation for the syntax for how to tell OpenMP to use different forms of static or dynamic scheduling. (For example, `omp parallel for schedule(dynamic 100)` distributes iterations to threads using dynamic scheduling with a chunk size of 100 iterations.  You can think of the implementation as a dynamic work queue where threads in the thread pool pull off 100 iterations at once, like what [we talked about in these lecture slides](https://gfxcourses.stanford.edu/cs149/fall22/lecture/perfopt1/slide_11).
     
 Here is an example for an atomic counter update in OpenMP.
 
@@ -79,7 +81,7 @@ You can run your code, checking correctness and performance against the staff re
 
     ./pr <PATH_TO_GRAPHS_DIRECTORY>/com-orkut_117m.graph 
     
-If you are working on a myth machine, we've located a copy of the graphs directory at `/afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`.  You can also download the graphs from <http://cs149.stanford.edu/cs149asstdata/all_graphs.tgz>. (Please paste the preceding link into your browser to download the .tgz file, but be careful, this is a 2.2 GB download.) Some interesting real-world graphs include:
+If you are working on a myth machine, we've located a copy of the graphs directory at `/afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`.  You can also download the graphs from <http://cs149.stanford.edu/cs149asstdata/all_graphs.tgz>. (On AWS, you can do: `wget /afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`. On your local machine, please paste the preceding link into your browser to download the .tgz file. In both cases, be careful, this is a 3 GB download.) Some interesting real-world graphs include:
 
  * com-orkut_117m.graph 
  * oc-pokec_30m.graph
