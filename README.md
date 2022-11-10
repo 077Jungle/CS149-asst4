@@ -167,7 +167,7 @@ __Tips/Hints:__
 
 ## Grading and Handin ##
 
-Along with your code, we would like you to hand in a clear, high-level description of how your implementation works as well as a brief description of how you arrived at your solutions. Specifically address approaches you tried along the way, and how you went about determining how to optimize your code (For example, what measurements did you perform to guide your optimization efforts?).
+Along with your code, we would like you to hand in a clear but concise high-level description of how your implementation works as well as a brief description of how you arrived at your solutions. Specifically address approaches you tried along the way, and how you went about determining how to optimize your code (For example, what measurements did you perform to guide your optimization efforts?).
 
 Aspects of your work that you should mention in the write-up include:
 
