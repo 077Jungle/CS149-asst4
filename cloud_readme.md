@@ -6,7 +6,7 @@ NOTE: __Please don't forget to SHUT DOWN your instances when you're done for the
 
 ### Creating a VM with 32 vCPU ###
       
-1. Now you're ready to create a VM instance. Click on the button that says `Launch Instances`. Choose the `Ubuntu Server 20.04 LTS (HVM), SSD Volume Type` AMI:
+1. Navigate to your "Instances" page in AWS by selecting the correct link in the left hand menu. Click on the button that says `Launch Instances`. Choose the `Ubuntu Server 20.04 LTS (HVM), SSD Volume Type` AMI:
 ![AMI Selection](handout/AMI.png?raw=true)
 
 2. Choose the `m5.8xlarge` Instance Type and then click `4. Add Storage` on the top bar: 
