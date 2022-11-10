@@ -165,6 +165,8 @@ __Tips/Hints:__
 
 * If you used different representations of the frontier in Parts 1.2 and 1.3, you may have to convert between these representations in the hybrid solution.  How might you efficiently convert between them? Is there an overhead in doing so?
 
+You can run our grading script via: `./bfs_grader <path to graphs directory>`, which will report correctness and a performance points score for a number of graphs.
+
 ## Grading and Handin ##
 
 Along with your code, we would like you to hand in a clear but concise high-level description of how your implementation works as well as a brief description of how you arrived at your solutions. Specifically address approaches you tried along the way, and how you went about determining how to optimize your code (For example, what measurements did you perform to guide your optimization efforts?).
