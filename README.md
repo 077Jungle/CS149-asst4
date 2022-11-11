@@ -103,7 +103,7 @@ Your code should handle cases where there are no outgoing edges by distributing 
 
 You can also run our grading script via: `./pr_grader <path to graphs directory>`, which will report correctness and a performance points score for a number of graphs.
 
-__NOTE__: a common pitfall students hit when implementing `page_rank` is they find their implementation fails the correctness check based on very small differences between their code's output values and the reference. Since the errors are very small, it's reasonable to assume these are due to differences in the order of floating point arithmetic, and that the checker should be more lenient in its checks.  However, our experience is that this is *almost, almost always an error in the student's code*. 
+__NOTE__: a common pitfall students hit when implementing `page_rank` is they find their implementation fails the correctness check based on very small differences between their code's output values and the reference. Since the errors are very small, it's reasonable to (often incorrectly) assume these differences in value are due to differences in the order of floating point arithmetic between the student and reference solution, and that the checker should be more lenient in its checks.  However, our experience is that observing these differences is *almost, almost always an error in the student's code*. 
 
 __Tips:__ 
 
