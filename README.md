@@ -169,6 +169,8 @@ You can run our grading script via: `./bfs_grader <path to graphs directory>`, w
 
 ## Grading and Handin ##
 
+We have a leaderboard for this assignment, which will be live at [http://34.218.250.164/](http://34.218.250.164/). For the leaderboard, we will run your code on a subset of the BFS tests.
+
 Along with your code, we would like you to hand in a clear but concise high-level description of how your implementation works as well as a brief description of how you arrived at your solutions. Specifically address approaches you tried along the way, and how you went about determining how to optimize your code (For example, what measurements did you perform to guide your optimization efforts?).
 
 Aspects of your work that you should mention in the write-up include:
@@ -187,6 +189,8 @@ The 100 points on this assignment are allotted as follows:
 * 16 points:  Pagerank performance
 * 70 points:  BFS performance
 * 14 points:  Write-up
+
+For your final grade, the above 100 points will be scaled by 0.94, with the other 0.06 of your grade coming from your performance on the BFS leaderboard.
 
 ## Hand-in Instructions ##
 
