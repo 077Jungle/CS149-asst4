@@ -85,7 +85,6 @@ If you are working on a myth machine, we've located a copy of the graphs directo
 
  * com-orkut_117m.graph 
  * oc-pokec_30m.graph
- * rmat_200m.graph
  * soc-livejournal1_68m.graph
  
 Your useful synthetic, but large graphs include:
