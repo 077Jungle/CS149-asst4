@@ -175,7 +175,7 @@ Along with your code, we would like you to hand in a clear but concise high-leve
 Aspects of your work that you should mention in the write-up include:
 
 1. Include both partners' names at the top of your write-up.
-2. Run bfs_grader and pr_grader on GCP and insert a copy of the score table in your solutions.
+2. Run bfs_grader and pr_grader on AWS and insert a copy of the score table in your solutions.
 3. For bfs, describe the process of optimizing your code:
  * In Part 2 (Top Down) and 3 (Bottom Up), where is the synchronization in each of your solutions? Do you do anything to limit the overhead of synchronization?
  * In Part 4 (Hybrid), did you decide to switch between the top-down and bottom-up BFS implementations dynamically? How did you decide which implementation to use?
