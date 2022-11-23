@@ -81,7 +81,7 @@ You can run your code, checking correctness and performance against the staff re
 
     ./pr <PATH_TO_GRAPHS_DIRECTORY>/com-orkut_117m.graph 
     
-If you are working on a myth machine, we've located a copy of the graphs directory at `/afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`.  You can also download the graphs from <http://cs149.stanford.edu/cs149asstdata/all_graphs.tgz>. (On AWS, you can do: `wget /afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`. On your local machine, please paste the preceding link into your browser to download the .tgz file. In both cases, be careful, this is a 3 GB download.) Some interesting real-world graphs include:
+If you are working on a myth machine, we've located a copy of the graphs directory at `/afs/ir.stanford.edu/class/cs149/data/asst3_graphs/`.  You can also download the graphs from <http://cs149.stanford.edu/cs149asstdata/all_graphs.tgz>. (On AWS, you can do: `wget http://cs149.stanford.edu/cs149asstdata/all_graphs.tgz` and then untar the resulting `all_graphs.tgz` file with `tar -xzvf all_graphs.tgz`. On your local machine, please paste the preceding link into your browser to download the .tgz file. In both cases, be careful, this is a 3 GB download.) Some interesting real-world graphs include:
 
  * com-orkut_117m.graph 
  * oc-pokec_30m.graph
