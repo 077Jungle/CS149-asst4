@@ -115,7 +115,7 @@ Accumulating into a shared variable can be done by marking the variable as a "re
          mySum += A[i];
      }
 
-## Part 2: Parallel Breadth-First Search ("Top Down") ##
+## Part 2: Parallel "Top Down" Breadth-First Search (20 points) ##
 
 Breadth-first search (BFS) is a common algorithm that might have seen in a prior algorithms class (See [here](https://www.hackerearth.com/practice/algorithms/graphs/breadth-first-search/tutorial/) and [here](https://www.youtube.com/watch?v=oDqjPvD54Ss) for helpful references.)
 Please familiarize yourself with the function `bfs_top_down()` in `bfs/bfs.cpp`, which contains a sequential implementation of BFS. The code uses BFS to compute the distance to vertex 0 for all vertices in the graph. You may wish to familiarize yourself with the graph structure defined in `common/graph.h` as well as the simple array data structure `vertex_set` (`bfs/bfs.h`), which is an array of vertices used to represent the current frontier of BFS.
@@ -138,7 +138,7 @@ __Tips/Hints:__
 * Are there conditions where it is possible to avoid using `compare_and_swap`?  In other words, when you *know* in advance that the comparison will fail?
 * There is a preprocessor macro `VERBOSE` to make it easy to disable useful print per-step timings in your solution (see the top of `bfs/bfs.cpp`).  In general, these printfs occur infrequently enough (only once per BFS step) that they do not notably impact performance, but if you want to disable the printfs during timing, you can use this `#define` as a convenience.
 
-### Part 3: "Bottom Up" BFS ###
+## Part 3: "Bottom Up" BFS (25 points) ##
 
 Think about what behavior might cause a performance problem in the BFS implementation from Part 1.2.  An alternative implementation of a breadth-first search step may be more efficient in these situations.  Instead of iterating over all vertices in the frontier and marking all vertices adjacent to the frontier, it is possible to implement BFS by having *each vertex check whether it should be added to the frontier!*  Basic pseudocode for the algorithm is as follows:
 
@@ -156,7 +156,7 @@ __Tips/Hints:__
 * It may be useful to think about how you represent the set of unvisited nodes.  Do the top-down and bottom-up versions of the code lend themselves to different implementations?  
 * How do the synchronization requirements of the bottom-up BFS change?
 
-## Part 4: Hybrid BFS (70 points) ##
+## Part 4: Hybrid BFS (25 points) ##
 
 Notice that in some steps of the BFS, the "bottom up" BFS is signficantly faster than the top-down version.  In other steps, the top-down version is signficantly faster.  This suggests a major performance improvement in your implementation, if __you could dynamically choose between your "top down" and "bottom up" formulations based on the size of the frontier or other properties of the graph!__  If you want a solution competitive with the reference one, your implementation will likely have to implement this dynamic optimization.  Please provide your solution in `bfs_hybrid()` in `bfs/bfs.cpp`.
 
