@@ -10,7 +10,7 @@ In this assignment, you will implement two graph processing algorithms: [breadth
 
 ## Environment Setup ##
 
-Early starters of this assignment should get started by running on the 4-core (8 hyperthread) machines in the Myth cluster.  These machines will suffice for basic development and performance testing.  However final grading will be performed on 32 vCPU machines that you will run on the AWS cloud platform (see [cloud_readme.md](cloud_readme.md) for setup).
+Final grading of this assignment will be performed on 32 vCPU machines that you will run on the AWS cloud platform (see [cloud_readme.md](cloud_readme.md) for setup). However, you may begin this assignment on the 4-core (8 hyperthread) machines in the Myth cluster if you would like. These machines will suffice for basic development and performance testing. That being said, **test your code on AWS before submitting**.
 
 To get started on myth machines:
 
